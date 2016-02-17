@@ -31,6 +31,8 @@ cosine<-function (x, y = NULL)
 }
 
 
+jpeg=function(x) grDevices::jpeg(x,height = 6, width = 6, units = 'in', res=300,quality=95)
+
 dis=1-cosine(as.matrix(d))
 jpeg('parteien_cos_dist.jpg')
 heatmap(cosine(as.matrix(d)))
@@ -45,4 +47,13 @@ p<-princomp(d)
 biplot(p)
 dev.off()
 
+jpeg('parteien_alleinstellung.jpg')
+library(ade4)
+ca<-dudi.coa(t(1+d),nf=6,scannf=F)
+heatmap(as.matrix(d[order(ca$cw),]),scale='none',Rowv=NA)
+dev.off()
+
+jpeg('parteien_for_fun.jpg')
+heatmap(as.matrix(d),scale='none')
+dev.off()
 
