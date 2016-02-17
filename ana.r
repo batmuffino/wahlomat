@@ -53,7 +53,8 @@ dev.off()
 
 jpeg('parteien_pca.jpg')
 p<-princomp(d)
-biplot(p)
+#biplot(p)
+biplot(ca)
 dev.off()
 
 jpeg('parteien_alleinstellung.jpg')
