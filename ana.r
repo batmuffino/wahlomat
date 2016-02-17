@@ -1,6 +1,7 @@
+#from package lsa
 cosine<-function (x, y = NULL) 
 {
-#package lsa
+
     if (is.matrix(x) && is.null(y)) {
         co = array(0, c(ncol(x), ncol(x)))
         f = colnames(x)
@@ -31,12 +32,20 @@ cosine<-function (x, y = NULL)
 }
 
 
+
 jpeg=function(x) grDevices::jpeg(x,height = 6, width = 6, units = 'in', res=300,quality=95)
 
+
+#code begins here
+d<-read.csv('./data.csv')
+
+
 dis=1-cosine(as.matrix(d))
+
 jpeg('parteien_cos_dist.jpg')
-heatmap(cosine(as.matrix(d)))
+heatmap(cosine(as.matrix(d)),scale='none')
 dev.off()
+
 jpeg('parteien_mds.jpg')
 plot(cmdscale(as.dist(dis)),pch='',xlab='',ylab='')
 text(cmdscale(as.dist(dis)),label=row.names(dis))
