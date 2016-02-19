@@ -69,3 +69,12 @@ jpeg('bw_parteien_for_fun.jpg')
 heatmap(as.matrix(d),scale='none')
 dev.off()
 
+require(MASS)
+i<-isoMDS(as.matrix(dis),k=1)$points
+
+jpeg('bw_mitte.jpg')
+plot(x=sort(i),y=seq(10),pch='',ylab='',xlab='Parteienspektrum')
+text(x=sort(i),y=seq(10),labels=colnames(d)[order(i)])
+dev.off()
+
+
